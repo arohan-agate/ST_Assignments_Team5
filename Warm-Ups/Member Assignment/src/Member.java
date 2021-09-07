@@ -1,5 +1,3 @@
-package SpecialTopics;
-
 public class Member {
     // fields
     protected String name;
