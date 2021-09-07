@@ -2,14 +2,16 @@ package SpecialTopics;
 
 public class Member {
     // fields
-    public String name;
-    public int points;
-    public static int id = 0;
+    protected String name;
+    protected int points;
+    protected int id;
+    protected static int id_count = 0;
 
     // constructor
     public Member(String s, int p) {
         name = s;
         points = p;
-        id++;
+        id = id_count;
+        id_count++;
     }
 }
