@@ -1,6 +1,6 @@
 var user = {
 	name: 'Bob',
-    age: 20,
+    	age: 20,
 	height: 72,
 	weight: 200,
 	weightGoal: 180,
