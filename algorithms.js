@@ -9,9 +9,9 @@ var user = {
 }
 
 function BMI_Calc() {
-	hMeters = user.height/39.3701
-	wKilo = user.weight/2.205 
-	return wKilo/(hMeters*hMeters)
+	hMeters = user.height/39.3701 // converting height in inches to meters
+	wKilo = user.weight/2.205  // converting weight in pounds to kilos
+	return wKilo/(hMeters*hMeters)  // calculating BMI
 }
 
 function idealWeight() {
@@ -19,8 +19,9 @@ function idealWeight() {
 }
 
 function WorkoutPlan() {
-	var status = ''
+    var status = ''
     BMI = BMI_Calc()
+    // assigns at status depending on BMI
     if (BMI <= 18.5) {
         status = 'U'
     }
@@ -33,6 +34,8 @@ function WorkoutPlan() {
     else {
         status = 'Ob'
     }
+    
+    // creates workout plan, considering status and age
     if (user.age > 15 && user.age < 45) {
         if (status == 'U') {
             return 'Workout Type: Strength Training\t\tWeekly Hours: 3'
