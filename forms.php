@@ -9,10 +9,14 @@
    }
    if(isset($_POST['BMI'])){
        $_SESSION['BMI'] = $_POST['BMI'];
+       header("Location: forms.php");
+       return;
    }
 
    if(isset($_POST['WorkoutPlan'])){
        $_SESSION['WorkoutPlan'] = $_POST['WorkoutPlan'];
+       header("Location: forms.php");
+       return;
    }
 
    if(isset($_SESSION['age']) && isset($_SESSION['height']) && isset($_SESSION['weight']) && isset($_SESSION['exercise'])){
@@ -35,7 +39,7 @@
             }
             // 30 minutes a day for 5 days if not doing so
             else if(($BMI < 20 && $_SESSION['exercise'] < 2.5)){
-                $_SESSION['message'] = "Consider raising your exercise by at least " + 3.75 - $_SESSION['exercise'] + " hours.";
+                $_SESSION['message'] = "Consider raising your exercise by at least " + 2.5 - $_SESSION['exercise'] + " hours.";
             }
             else{
                 $_SESSION['message'] = "Your workout plan fits your BMI to maintain current weight";
