@@ -3,10 +3,10 @@ var age = form.age.value;
 var height = form.height.value * 2.54; // in to centimeters
 var weight = form.weight.value * .454; // lb to kg
 var sex = form.gender.value;
-var BMR = 0; // ideal calorie intake
+var BMR = 7; // ideal calorie intake (weekly)
 var idealWeight = 0;
 if(sex == "Male"){
-  BMR = 13.397*weight + 4.799*height - 5.677*age + 88.362;
+  BMR *= 13.397*weight + 4.799*height - 5.677*age + 88.362;
   idealWeight = 48.0*weight + 2.7(form.height.value - 60); // GJ Hamwi (uses inches)
 }
 else{ // female
