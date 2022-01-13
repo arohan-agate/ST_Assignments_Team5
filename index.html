@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <script src="algorithms.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <!-- Bootstrap link to use bootstrap classes -->
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   </head>
   <!-- navbar from bootstrap -->
@@ -21,7 +21,7 @@
           <a class="nav-link" href="#about-us">About Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">IDK</a>
+          <a class="nav-link" href="#sources">Sources</a>
         </li>
       </ul>
     </div>
@@ -30,48 +30,180 @@
   
 <!-- home section -->
 <div id = "home">
-
+  <!-- Heading -->
   <h class = "home1">Home</h>
 
   <p>Name:
-    <input type = "text" size = "5" name = "Name">
+    <input type = "text" size = "5" name = "Name" id = "name">
   </p>
 
   <p>Age: 
-    <input type = "text" size = "5" name = "age"> years
+    <input type = "text" size = "5" name = "age" id = "age"> years
   </p>
 
   <p>Height: 
-    <input type = "text" size = "5" name = "height"> inches 
+    <input type = "text" size = "5" name = "height" id = "height"> inches 
   </p>
 
   <p> Weight: 
-    <input type = "text" size = "5" name = "weight"> lbs 
-  </p>
+    <input type = "text" size = "5" name = "weight" id = "weight"> lbs 
+  </p>  
 
-  <p> Select sex: 
-    <select name="sex">
+  <p> Select Sex: 
+    <select name="Sex" id = "sex">
     <option value="male">male</option>
     <option value="female">female</option>
   </select> </p>
 
-  <p> Weekly exercise <input type = "text" size = "5" name = "exercise"> hrs/week</p>
+  <p> Weekly exercise <input type = "text" size = "5" name = "exercise" id = "curr"> hrs/week</p>
+  
+  <script>
+   var name = document.getElementById("name").value;
+    var age = document.getElementById("age").value;
+    var height = document.getElementById("height").value * 2.54; // in to centimeters
+    var weight = document.getElementById("weight").value / 2.205; // lb to kg
+    var sex = document.getElementById("sex").value;
+    var BMR = BMR_Calc(); // ideal calorie intake
+    var idealWeight = 0;
+
+  //Base Metabolic Rate
+  function BMR_Calc() {
+    //Male
+
+    if(document.getElementById("sex").value == "male") {
+
+      //printing value on console
+      console.log(10*(document.getElementById("weight").value) + 6.25*(document.getElementById("height").value) - 5*(document.getElementById("age").value) + 5);
+
+    } else {//Female
+
+      //printing values on console
+       console.log(10*(document.getElementById("weight").value) + 6.25*(document.getElementById("height").value) - 5*(document.getElementById("age").value) - 161);
+      
+    }
+  }
+
+//Setting variable to value of function
+var BMI = BMI_Calc()
+
+function BMI_Calc() {
+  //Setting Variables
+  var wK = document.getElementById('weight').value / 2.205;
+  var hM = document.getElementById('height').value / 39.3701;
+
+  console.log(Math.round(wK/(hM*hM)))
+  // return wK/(hM*hM);
+}
+
+  //Workout Plan
+ function WorkoutPlan() {
+    var status = ''
+    BMI = BMI_Calc()
+    // assigns at status depending on BMI
+    if (BMI <= 18.5) {
+    status = 'U'
+    } else if (BMI > 18.5 && BMI <= 24.9) {
+      status = 'N'
+    } else if (BMI > 24.9 && BMI < 30) {
+      status = 'Ov'
+    }
+    else {
+         status = 'Ob'
+     }
+    
+// creates workout plan, considering status and age
+    if (age > 15 && age < 45) {
+      if (status == 'U') {
+        return 'Workout Type: Strength Training\t\tWeekly Hours: 3'
+      }
+      else if (status == 'N') {
+        return 'Workout Type: Strength Training\t\tWeekly Hours: 1\nWorkout Type: Aerobic Exercise\t\tWeekly Hours: 2'
+      }
+      else if (status == 'Ov') {
+        return 'Workout Type: Strength Training\t\tWeekly Hours: 3\nWorkout Type: Aerobic Exercise\t\tWeekly Hours: 3'
+      }
+      if (status == 'Ob') {
+        return 'Workout Type: Strength Training\t\tWeekly Hours: 1\nWorkout Type: Aerobic Exercise\t\tWeekly Hours: 4'
+      }
+      }
+    else if (age >= 45) {
+      if (status == 'U') {
+        return 'Workout Type: Aerobic Exercise\t\tWeekly Hours: 3'
+      }
+      else if (status == 'N') {
+        return 'Workout Type: Aerobic Exercise\t\tWeekly Hours: 3'
+      }
+      else if (status == 'Ov') {
+        return 'Workout Type: Aerobic Exercise\t\tWeekly Hours: 4'
+      }
+      if (status == 'Ob') {
+        return 'Workout Type: Aerobic Exercise\t\tWeekly Hours: 5'
+      }
+      }
+      else {
+        return 'Workout Type: Aerobic Exercise\t\tWeekly Hours: 3'
+      }
+      }
+    </script>
+
+
 </div>
 
 <div class="button">
-  <button type="button" class="btn btn-dark">Calculate BMI</button>
+  <!-- buttons use BootStrap class -->
+  <button type="button" class="btn btn-dark" onclick="console.log(BMI_Calc())">Calculate BMI</button>
 
-  <button type="button" class="btn btn-dark">Generate Workout Plan</button>
+  <button type="button" class="btn btn-dark" onclick="console.log(WorkoutPlan())">Generate Workout Plan</button>
 
-  <button type="button" class="btn btn-dark">Calculate Ideal Weight</button>
+  <button type="button" class="btn btn-dark" onclick ="console.log(BMR_Calc())">Basal Metabolic Rate</button>
+
 </div>
 
+<!-- About us -->
 <div id = "about-us">
+  <!-- Heading -->
   <h class = "bout1">About Us</h>
+  
+  <p class = "descript">We are Team 5 from P3 Special Topics in Computer Science. We chose to work on a project that would help people achieve their fitness goals, as this is something that can help all people. Our algorithms are tailored to help everyone, but there is more precision for individuals between the ages of 15 and 45. Whether you need a sustainable workout plan to support weight-gain or weight-loss, this website will have it all. Since we are not trained medical professionals, all of the formulas and benchmarks we use are cited and supported by real professionals.​</p>
+
 </div>
-        <!-- <input type="submit" name = "BMI" value = "Calculate BMI">
 
-        <input type = "submit" name = "WorkoutPlan" value = "Generate Workout Plan">
+<!-- Sources -->
+<div id = "sources">
+  <!-- heading -->
+  <h class = "sources-gang">Sources</h>
+  
+  <!-- Links -->
 
-        <input type = "submit" name = "IdealWeight" value = "Calculate Idea Weight"> -->
+  <!-- cdc -->
+  <p>
+    <a href = "www.cdc.gov/">www.cdc.gov/</a>
+  </p>
+<!-- Harvard -->
+  <p>
+    <a href = "www.health.harvard.edu/">www.health.harvard.edu/</a>
+  </p>
+  <!-- MayoClinic -->
+  <p>
+    <a href = "www.mayoclinic.org/">www.mayoclinic.org/</a>
+  </p>
+  <!-- National Institute on health -->
+  <p>
+    <a href = "www.nia.nih.gov/">www.nia.nih.gov/</a>
+  </p>
+  <!-- omni calculator -->
+  <p>
+    <a href = "www.omnicalculator.com/">www.omnicalculator.com/</a>
+  </p>
+  <!-- BMI Calculator -->
+  <p>
+    <a href = "www.bmi-calculator.net/">www.bmi-calculator.net/</a>
+  </p>
+  <!-- Garnet Health -->
+  <p>
+    <a href = "https://www.garnethealth.org/news/basal-metabolic-rate-calculator">https://www.garnethealth.org/news/basal-metabolic-rate-calculator</a>
+  </p>
+
+</div>
+
 </html>
