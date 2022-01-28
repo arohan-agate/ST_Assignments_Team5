@@ -12,37 +12,38 @@ body {
 #home {
   margin-top: 50px;
   padding-left: 42%;
-  /* padding-bottom: 50%; */
 }
 
 
 .home1 {
-  font-size: 0.5in; 
+  font-size: 0.42in; 
   padding-bottom: 10%;
   text-align: center;
 }
 
 .button {
   padding:2%;
-  padding-left: 34%;
+  padding-left: 30%;
+  padding-right: 20%;
   padding-bottom: 10%;
-  margin-right: 10px;
   align-content: center;
 }
 
 #about-us {
-padding-bottom: 10%;
+padding-top:8%;
+padding-bottom: 8%;
 text-align: center;
 }
 
 .bout1 {
-  font-size: 0.5in;
+  font-size: 0.42in;
 }
 
 .descript {
-  padding-top: 10%;
+  padding-top: 5%;
   padding-right: 10%;
-  padding-left: 10%
+  padding-left: 10%;
+  padding-bottom: 8%;
 }
 
 #sources {
@@ -50,7 +51,11 @@ text-align: center;
 }
 
 .sources-gang {
-  font-size: 0.5in;
+  font-size: 0.42in;
+}
+
+#table table-dark {
+  padding-right: 30%;
 }
 
 code {
